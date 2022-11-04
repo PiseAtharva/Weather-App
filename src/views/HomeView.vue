@@ -43,6 +43,7 @@ const searchQuery = ref("");
 const queryTimeout = ref(null);
 const mapboxSearchResults = ref(null);
 const searchError = ref(null);
+const router = useRouter();
 
 const mapboxAPIKey =
   "pk.eyJ1Ijoiam9obmtvbWFybmlja2kiLCJhIjoiY2t5NjFzODZvMHJkaDJ1bWx6OGVieGxreSJ9.IpojdT3U3NENknF6_WhR2Q";
@@ -50,7 +51,15 @@ const mapboxAPIKey =
 const previewCity = (searchResult) => {
   console.log(searchResult);
   const [city, state] = searchResult.place_name.split(", ");
-  console.log(city, " ", state);
+  router.push({
+    name: "cityView",
+    params: { state: state, city: city },
+    query: {
+      lat: searchResult.geometry.coordinates[1],
+      lng: searchResult.geometry.coordinates[0],
+      preview: true,
+    },
+  });
 };
 
 const getSearchResults = () => {
