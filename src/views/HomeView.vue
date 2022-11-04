@@ -23,6 +23,7 @@
             v-for="searchResult in mapboxSearchResults"
             :key="searchResult.id"
             class="py-2 cursor-pointer"
+            @click="previewCity(searchResult)"
           >
             {{ searchResult.place_name }}
           </li>
@@ -44,6 +45,10 @@ const searchError = ref(null);
 
 const mapboxAPIKey =
   "pk.eyJ1Ijoiam9obmtvbWFybmlja2kiLCJhIjoiY2t5NjFzODZvMHJkaDJ1bWx6OGVieGxreSJ9.IpojdT3U3NENknF6_WhR2Q";
+
+const previewCity = (searchResult) => {
+  console.log(searchResult)
+}
 
 const getSearchResults = () => {
   clearTimeout(queryTimeout.value);
