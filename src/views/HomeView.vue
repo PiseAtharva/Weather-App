@@ -36,6 +36,7 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 const searchQuery = ref("");
 
@@ -47,8 +48,10 @@ const mapboxAPIKey =
   "pk.eyJ1Ijoiam9obmtvbWFybmlja2kiLCJhIjoiY2t5NjFzODZvMHJkaDJ1bWx6OGVieGxreSJ9.IpojdT3U3NENknF6_WhR2Q";
 
 const previewCity = (searchResult) => {
-  console.log(searchResult)
-}
+  console.log(searchResult);
+  const [city, state] = searchResult.place_name.split(", ");
+  console.log(city, " ", state);
+};
 
 const getSearchResults = () => {
   clearTimeout(queryTimeout.value);
